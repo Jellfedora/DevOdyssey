@@ -1,0 +1,39 @@
+.bio {
+    width: 100%;
+    color: #F8F8F8;
+
+
+    &__text {
+        line-height: 1.5em;
+        font-size: 1.5em;
+        text-align: center;
+        padding: 0 0.5em 0 0.5em;
+    }
+
+    &__next {
+        transition: 2s;
+        position: fixed;
+        bottom: 0;
+        width: 100%;
+        display: flex;
+        justify-content: center;
+        // border-top: 1px solid $color-white;
+        background-color: transparent;
+
+        &__button {
+            cursor: pointer;
+            transition: 2s;
+            // width: 100%;
+            padding: 1em;
+            font-weight: bold;
+            border: none;
+            color: $color-white;
+            // border-top: 1px solid $color-white;
+            background-color: transparent;
+        }
+    }
+}
+
+.react-reveal {
+    width: 100%;
+}
