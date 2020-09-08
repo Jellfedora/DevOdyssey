@@ -61,24 +61,38 @@ class Bio extends Component {
                 <div className="bio__title">Présentation</div>
                 <div className="bio__box">
                     <div className="bio__box__content">
-                        <div className="bio__box__content__text">
-                            {/* Step One */}
-                            <Flip left opposite cascade collapse when={this.state.showFirstStep} unmountOnExit duration={this.state.durationStepOne} delay={this.state.delay ? 1000 : 200} className="bio__text">
-                                <p>Hello, moi c'est Julien.</p>
-                            </Flip>
-                            <Flip left opposite cascade collapse when={this.state.showFirstStep} unmountOnExit duration={this.state.durationStepOne} delay={this.state.delay ? 900 : 500} className="bio__text">
-                                <p>Je suis un concepteur / développeur web français spécialisé sur la librairie React Js et vivant à la Rochelle .</p>
-                            </Flip>
-                            <Flip left opposite cascade collapse when={this.state.showFirstStep} unmountOnExit duration={this.state.durationStepOne} delay={this.state.delay ? 800 : 1000} className="bio__text">
-                                <p>J'ai obtenu le diplôme de Concepteur Développeur d'applications d'un niveau II en mars 2020 que j'ai préparé avec l'école O'Clock</p>
-                            </Flip>
-                            <Flip left opposite cascade collapse when={this.state.showFirstStep} unmountOnExit duration={this.state.durationStepOne} delay={this.state.delay ? 700 : 1500} className="bio__text">
-                                <p>et en alternance avec l'entreprise E-wi Télécom .</p>
-                            </Flip>
-                            <Flip left opposite cascade collapse when={this.state.showFirstStep} unmountOnExit duration={this.state.durationStepOne} delay={this.state.delay ? 600 : 2000} className="bio__text">
-                                <p>Je m'applique à créer des applications Web immersives et centrées sur l'expérience utilisateur . . .</p>
-                            </Flip>
-                        </div>
+                        {this.props.isSmallScreen
+                            ? <Zoom className="bio__box__content__text" left cascade collapse when={this.state.showFirstStep} unmountOnExit duration={this.state.durationStepOne} delay={this.state.delay ? 1000 : 200}>
+                                {/* Step One */}
+                                <div className="bio__text">
+                                    <p>Hello, moi c'est Julien.</p>
+                                    <p>Je suis un concepteur / développeur web français spécialisé sur la librairie React Js et vivant à la Rochelle .</p>
+
+                                    <p>J'ai obtenu le diplôme de Concepteur Développeur d'applications d'un niveau II en mars 2020 que j'ai préparé avec l'école O'Clock</p>
+
+                                    <p>et en alternance avec l'entreprise E-wi Télécom .</p>
+                                    <p>Je m'applique à créer des applications Web immersives et centrées sur l'expérience utilisateur . . .</p>
+                                </div>
+                            </Zoom>
+                            : <div className="bio__box__content__text">
+                                {/* Step One */}
+                                <Flip left opposite cascade collapse when={this.state.showFirstStep} unmountOnExit duration={this.state.durationStepOne} delay={this.state.delay ? 1000 : 200} className="bio__text">
+                                    <p>Hello, moi c'est Julien.</p>
+                                </Flip>
+                                <Flip left opposite cascade collapse when={this.state.showFirstStep} unmountOnExit duration={this.state.durationStepOne} delay={this.state.delay ? 900 : 500} className="bio__text">
+                                    <p>Je suis un concepteur / développeur web français spécialisé sur la librairie React Js et vivant à la Rochelle .</p>
+                                </Flip>
+                                <Flip left opposite cascade collapse when={this.state.showFirstStep} unmountOnExit duration={this.state.durationStepOne} delay={this.state.delay ? 800 : 1000} className="bio__text">
+                                    <p>J'ai obtenu le diplôme de Concepteur Développeur d'applications d'un niveau II en mars 2020 que j'ai préparé avec l'école O'Clock</p>
+                                </Flip>
+                                <Flip left opposite cascade collapse when={this.state.showFirstStep} unmountOnExit duration={this.state.durationStepOne} delay={this.state.delay ? 700 : 1500} className="bio__text">
+                                    <p>et en alternance avec l'entreprise E-wi Télécom .</p>
+                                </Flip>
+                                <Flip left opposite cascade collapse when={this.state.showFirstStep} unmountOnExit duration={this.state.durationStepOne} delay={this.state.delay ? 600 : 2000} className="bio__text">
+                                    <p>Je m'applique à créer des applications Web immersives et centrées sur l'expérience utilisateur . . .</p>
+                                </Flip>
+                            </div>
+                        }
 
                         <Zoom when={this.state.showFirstStep} unmountOnExit duration={this.state.durationStepOne} delay={this.state.delay ? 500 : 6000}>
                             <div className="bio__next ">
@@ -105,6 +119,7 @@ const mapDispatchToProps = (dispatch) => {
 }
 const mapStateToProps = (state) => {
     return {
+        isSmallScreen: state.home.isSmallScreen
     }
 }
 export default connect(mapStateToProps, mapDispatchToProps)(Bio);

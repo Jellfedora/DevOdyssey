@@ -18,6 +18,28 @@ import Portfolio from '../Portfolio';
 
 
 class Navigation extends Component {
+    componentDidMount() {
+        window.addEventListener('resize', this.resize)
+
+        // Detect screen size
+        if (window.innerWidth < 768) {
+            console.log('ici')
+            const action = { type: "TOGGLE_DEVICE_SIZE_VALUE", value: true }
+            this.props.dispatch(action)
+        }
+    }
+
+    resize = () => {
+        if (window.innerWidth > 768) {
+            const action = { type: "TOGGLE_DEVICE_SIZE_VALUE", value: true }
+            this.props.dispatch(action)
+        } else {
+            const action = { type: "TOGGLE_DEVICE_SIZE_VALUE", value: false }
+            this.props.dispatch(action)
+        }
+    }
+
+
     render() {
         return (
             <div className="home" style={{ backgroundColor: this.props.bgColor }}>

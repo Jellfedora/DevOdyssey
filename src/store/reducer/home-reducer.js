@@ -3,7 +3,8 @@ const initialState = {
     textColor: "#020202",
     headerColor: 'white',
     showSelectSound: true,
-    showMenu: false
+    showMenu: false,
+    isSmallScreen: false
 }
 
 function homeReducer(state = initialState, action) {
@@ -37,6 +38,13 @@ function homeReducer(state = initialState, action) {
             nextState = {
                 ...state,
                 showMenu: action.value
+            }
+            return nextState || state
+        case 'TOGGLE_DEVICE_SIZE_VALUE':
+            console.log(action.value)
+            nextState = {
+                ...state,
+                isSmallScreen: action.value
             }
             return nextState || state
         default:
