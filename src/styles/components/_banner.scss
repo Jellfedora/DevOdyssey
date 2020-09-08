@@ -5,12 +5,14 @@
     justify-content: center;
     align-items: center;
     flex-wrap: wrap;
+    transition: 2s;
 
     &__content {
         height: 100%;
         display: flex;
         flex-wrap: wrap;
         align-items: center;
+
 
         &__title,
         &__baseline {
@@ -30,8 +32,8 @@
         }
 
         &__audio-choice {
-            width: 80%;
-            height: 3em;
+            padding: 1em;
+            border-radius: 50px;
             display: flex;
             justify-content: space-around;
             margin: 0 auto;
@@ -46,44 +48,23 @@
             &__content {
                 display: flex;
                 justify-content: space-between;
-                width: 50%;
+                width: 60%;
                 margin-top: 2.5em;
 
                 & button {
                     cursor: pointer;
                     background-color: transparent;
                     border: none;
-                    width: 2em;
-                    height: 2em;
-
-                    & svg {
-                        position: relative;
-                        bottom: 0.5em;
-                        right: 0.5em;
-                    }
+                    width: 3em;
+                    height: 3em;
                 }
             }
         }
     }
-
 
     &__text {
         height: 20em;
         justify-content: center;
         flex-wrap: wrap;
-    }
-
-}
-
-// Small devices (landscape phones, 576px and up)
-@media (min-width: 576px) {
-    .banner {
-        &__content {
-            &__audio-choice {
-                &__content {
-                    width: 20%;
-                }
-            }
-        }
     }
 }

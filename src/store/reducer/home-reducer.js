@@ -1,10 +1,9 @@
 const initialState = {
     bgColor: "#F8F8F8",
     textColor: "#020202",
-    hideBio: null,
-    bioDisplay: 'initial',
-    hideSkills: null,
-    skillsDisplay: 'initial',
+    headerColor: 'white',
+    showSelectSound: true,
+    showMenu: false
 }
 
 function homeReducer(state = initialState, action) {
@@ -22,19 +21,22 @@ function homeReducer(state = initialState, action) {
                 textColor: action.value
             }
             return nextState || state
-        case 'HIDE_BIO':
+        case 'CHANGE_HEADER_COLOR':
             nextState = {
                 ...state,
-                hideBio: true,
-                bioDisplay: 'none',
-                hideSkills: true,
+                headerColor: action.value
             }
             return nextState || state
-        case 'HIDE_SKILLS':
+        case 'SHOW_SELECT_SOUND':
             nextState = {
                 ...state,
-                hideSkills: true,
-                skillsDisplay: 'none'
+                showSelectSound: action.value
+            }
+            return nextState || state
+        case 'SHOW_MENU':
+            nextState = {
+                ...state,
+                showMenu: action.value
             }
             return nextState || state
         default:

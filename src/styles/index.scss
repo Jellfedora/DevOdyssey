@@ -2,13 +2,19 @@
 'base/variables',
 'base/base';
 
-@import 'animations/rotating',
-'animations/blink',
-'animations/arrow-next'
+@import 'animations/blink',
+'animations/arrow-next',
+'animations/spotlight',
+'animations/move'
 ;
 
 @import 'components/app',
 'components/header',
 'components/banner',
-'components/bio'
+'components/bio',
+'components/skills',
+'components/skills-front-back',
+'components/skills-other',
+'components/portfolio',
+'components/contact'
 ;
