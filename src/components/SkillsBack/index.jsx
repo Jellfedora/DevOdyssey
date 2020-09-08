@@ -245,7 +245,7 @@ class SkillsOther extends Component {
         }
         return (
             <div className="skills-other">
-                <canvas id="canvas" style={{ height: '100vh', width: '100vw' }} ></canvas>
+                <canvas id="canvas" style={{ height: '80vh', width: '100vw' }} ></canvas>
                 <div className="skills-other__title">
                     <h3>Compétences: Autres</h3>
                 </div>
