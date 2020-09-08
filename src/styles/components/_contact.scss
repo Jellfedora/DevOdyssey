@@ -1,0 +1,67 @@
+.contact {
+    display: flex;
+    flex-wrap: wrap;
+    justify-content: center;
+    text-align: center;
+    align-content: space-around;
+    align-items: center;
+    min-height: 100vh;
+    font-size: 1em;
+    width: 80%;
+    margin: 0 auto;
+    margin-top: 4em;
+    transition: 2s;
+
+    &__text {
+        color: $color-dark;
+    }
+
+    &__content {
+        display: flex;
+        justify-content: space-around;
+        width: 100%;
+        flex-wrap: wrap;
+    }
+
+    &__item {
+        display: block;
+        text-align: left;
+        margin: 0.5em;
+        padding-bottom: 0 !important;
+
+        & svg {
+            position: relative;
+            top: 0.3em;
+            height: 1.2em;
+        }
+
+        & a,
+        & span {
+            color: $color-dark;
+            margin-left: 1em;
+            text-transform: lowercase;
+        }
+    }
+
+    &__separator {
+        margin: 2em auto;
+        width: 100%;
+        border-bottom: 1px solid $color-dark;
+    }
+}
+
+.addMarginTop {
+    margin-top: 6em;
+}
+
+@media (min-width: 1024px) {
+    .contact {
+        font-size: 1.5em;
+        width: 60%;
+        margin-top: 2em;
+    }
+
+    .addMarginTop {
+        margin-top: 3.5em;
+    }
+}
