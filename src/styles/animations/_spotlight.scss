@@ -1,0 +1,75 @@
+#container {
+    width: 100vw;
+    height: 100vh;
+    background-color: white;
+}
+
+#title {
+    text-align: center;
+    width: 100%;
+    padding: 10px 0 10px 0;
+}
+
+#box {
+    position: relative;
+    width: 100%;
+    height: 100%;
+    overflow: hidden;
+    -webkit-tap-highlight-color: rgba(0, 0, 0, 0);
+    -webkit-user-select: none;
+}
+
+.shadow__wall {
+    position: absolute;
+    height: 100%;
+    left: 0;
+    width: 100%;
+}
+
+#shadow__text {
+    width: 100%;
+    margin: 0;
+    color: $color-dark;
+    font-family: 'Caveat', sans-serif;
+    font-weight: bold;
+    text-align: center;
+    white-space: nowrap;
+
+    display: flex;
+    height: 100%;
+    flex-wrap: wrap;
+    justify-content: center;
+    align-content: center;
+
+    & img {
+        width: 2em;
+        margin: 0.5em;
+        height: 2em;
+        filter: grayscale(100%);
+        -webkit-filter: grayscale(100%);
+        -moz-filter: grayscale(100%);
+        -ms-filter: grayscale(100%);
+        -o-filter: grayscale(100%);
+    }
+}
+
+#shadow__spot {
+    position: absolute;
+    top: 0;
+    left: 0;
+    width: 200%;
+    height: 200%;
+    background: -webkit-gradient(radial, center center, 0, center center, 200, from(rgba(221, 16, 16, 0)), to(rgb(12, 12, 12))); //Change params 5 to modify spot size
+
+}
+
+@media (min-width: 992px) {
+    #shadow__text {
+
+        & img {
+            width: 3em;
+            margin: 2em;
+            height: 3em;
+        }
+    }
+}

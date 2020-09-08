@@ -1,10 +1,10 @@
 .round {
     position: relative;
-    // border: 2px solid $color-white;
     width: 40px;
     height: 40px;
     border-radius: 100%;
     margin: 0 auto;
+    background-color: $color-dark;
 }
 
 #cta {
