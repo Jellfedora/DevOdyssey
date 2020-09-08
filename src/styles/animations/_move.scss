@@ -1,0 +1,29 @@
+.move {
+    -webkit-animation-name: moveDown;
+    -webkit-animation-duration: 3s;
+    // -webkit-animation-iteration-count: infinite;
+    animation-timing-function: ease-in-out;
+    -webkit-animation-timing-function: ease-in-out;
+}
+
+@keyframes moveDown {
+    0% {
+        top: 0em;
+    }
+
+    25% {
+        top: 1em;
+    }
+
+    50% {
+        top: 2em;
+    }
+
+    75% {
+        top: 1em;
+    }
+
+    100% {
+        top: 0.5em;
+    }
+}
