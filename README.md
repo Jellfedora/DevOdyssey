@@ -1,6 +1,6 @@
 # DevOdyssey
 
-Just my personal website 
+Just my personal website create with React and Redux
 
 version 1.0.0
 
