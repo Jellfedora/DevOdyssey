@@ -2,6 +2,10 @@ import React, { Component } from 'react';
 import { connect } from 'react-redux';
 import Zoom from 'react-reveal/Zoom';
 import { Redirect } from "react-router-dom";
+// Three js ressources
+import * as THREE from "three";
+import { OrbitControls } from "three/examples/jsm/controls/OrbitControls";
+import fontCavea from '../../ressources/threejs/fonts/Caveat_Regular.json';
 // Img front
 import angularjs from '../../ressources/images/icons/angularjs.png';
 import bootstrap from '../../ressources/images/icons/bootstrap.png';
@@ -22,18 +26,18 @@ import php from '../../ressources/images/icons/php.png';
 import symfony from '../../ressources/images/icons/symfony.png';
 import wordpress from '../../ressources/images/icons/wordpress.png';
 
-const relMousePos = {
-    _x: 0, _y: 0, x: 0, y: 0,
-    updatePos: function (e) {
-        const event = (e || window.event) && (e.touches && e.touches[0]) || e;
-        this.x = event.clientX - this._x;
-        this.y = event.clientY - this._y;
-    },
-    setOrigin: function (e) {
-        this._x = e.offsetLeft + Math.floor(e.offsetWidth / 2);
-        this._y = e.offsetTop + Math.floor(e.offsetHeight / 2);
-    }
-}
+// const relMousePos = {
+//     _x: 0, _y: 0, x: 0, y: 0,
+//     updatePos: function (e) {
+//         const event = (e || window.event) && (e.touches && e.touches[0]) || e;
+//         this.x = event.clientX - this._x;
+//         this.y = event.clientY - this._y;
+//     },
+//     setOrigin: function (e) {
+//         this._x = e.offsetLeft + Math.floor(e.offsetWidth / 2);
+//         this._y = e.offsetTop + Math.floor(e.offsetHeight / 2);
+//     }
+// }
 
 class SkillsFront extends Component {
     constructor(props) {
@@ -56,133 +60,162 @@ class SkillsFront extends Component {
     }
 
     initAnimation = () => {
-        var container = document.querySelector('#box');
+        const canvas = document.querySelector('#c');
+        const renderer = new THREE.WebGLRenderer({ canvas });
+        const width = canvas.clientWidth;
+        const height = canvas.clientHeight;
+        renderer.setSize(width, height, false);
 
-        relMousePos.setOrigin(container);
-        container.addEventListener('mousemove', relMousePos.updatePos);
-        container.addEventListener('mousemove', this.onMouseMove);
-        container.addEventListener('touchmove', function (e) {
-            e.preventDefault();
-            e.stopPropagation();
-            this.onMouseMove(e);
-        }, { passive: false });
+        if (window.innerWidth > 800) {
+            renderer.shadowMap.enabled = true;
+            renderer.shadowMap.type = THREE.PCFSoftShadowMap;
+            renderer.shadowMap.needsUpdate = true;
+        };
 
-        this.onMouseMove({ clientX: relMousePos._x, clientY: relMousePos._y + 25 });
-    }
+        this.mount.appendChild(renderer.domElement);
 
-    onMouseMove = (e) => {
-        var container = document.querySelector('#box');
-        const textElem = document.querySelector('#shadow__text');
-        const spotElem = document.querySelector('#shadow__spot');
+        window.addEventListener('resize', onWindowResize, false);
+        function onWindowResize() {
+            camera.aspect = window.innerWidth / window.innerHeight;
+            camera.updateProjectionMatrix();
+            renderer.setSize(window.innerWidth, window.innerHeight);
+        };
 
-        var width = container.offsetWidth;
-        var height = container.offsetHeight;
+        // -----------------------------------------------------------------
+        // CAMERA
 
-        relMousePos.setOrigin(container);
-        container.addEventListener('mousemove', relMousePos.updatePos);
+        var camera = new THREE.PerspectiveCamera(20, window.innerWidth / window.innerHeight, 1, 500);
+        camera.position.set(0, 20, 30);
 
-        relMousePos.updatePos(e);
-        var xm = relMousePos.x;
-        var ym = relMousePos.y;
 
-        var d = Math.round(Math.sqrt(xm * xm + ym * ym) / 10);
-        textElem.style.textShadow = -xm + 'px ' + -ym + 'px ' + (d + 10) + 'px black';
-        spotElem.style.backgroundPosition = (xm - (width / 2)) + 'px ' + (ym - (height / 2)) + 'px';
+        // -----------------------------------------------------------------
+        // SCENE
+
+        var scene = new THREE.Scene();
+        scene.background = new THREE.Color("black");
+
+        // -----------------------------------------------------------------
+        // TOOLS
+
+        // OrbitControls
+        const controls = new OrbitControls(camera, canvas);
+        controls.update();
+
+        // -----------------------------------------------------------------
+        // LIGHT
+
+        var light = new THREE.AmbientLight('white'); // soft white light
+        scene.add(light);
+
+        //----------------------------------------------------------------- 
+        // FUNCTION
+
+        var skillsNameArray = [
+            "Html5",
+            "Css3",
+            "Sass",
+            "Bootstrap",
+            "Javascript",
+            "ReactJs",
+            "Redux",
+            "NodeJs",
+            "Symfony",
+            "AngularJs",
+            "Cakephp",
+            "Codeigniter",
+            "Three.js",
+            "mysql",
+            "php",
+            "Wordpress",
+            "Git",
+            "Gitlab",
+            "Github",
+            "Linux",
+            "Windows",
+            "React Native"
+        ];
+
+
+        //----------------------------------------------------------------- 
+        // Sphere
+
+        var radius = 5;
+        var widthSegments = 5;
+        var heightSegments = 5;
+        var geometry = new THREE.SphereGeometry(radius, widthSegments, heightSegments);
+
+        // Transparent color
+        var material = new THREE.MeshPhongMaterial({
+            color: 'white',
+            opacity: 0,
+            transparent: true,
+        });
+        var sphere = new THREE.Mesh(geometry, material);
+        var sphereVerticesArray = geometry.vertices;
+
+        //----------------------------------------------------------------- 
+        // INIT
+        function init() {
+
+            const colorSkill = new THREE.MeshPhongMaterial({ color: 'white' });
+
+            // Pour chaque élément du tableau on crée un mesh
+            for (let index = 0; index < skillsNameArray.length; index++) {
+
+                let skillName = skillsNameArray[index];
+                var skill = new THREE.FontLoader();
+                var font = skill.parse(fontCavea);
+                var geometry = new THREE.TextGeometry(skillName, {
+                    font: font,
+                    size: 0.2,
+                    height: 0.1,
+                    curveSegments: 0.01,
+                });
+                const colorImage = new THREE.MeshPhongMaterial({ color: 'white' });
+                const skillMesh = new THREE.Mesh(geometry, colorImage);
+                skillMesh.position.set(sphereVerticesArray[index].x, sphereVerticesArray[index].y, sphereVerticesArray[index].z);
+                sphere.add(skillMesh)
+            }
+        };
+
+        scene.add(sphere);
+
+        //----------------------------------------------------------------- 
+        // ANIMATE
+
+        var animate = function () {
+            requestAnimationFrame(animate);
+
+            // Sphere Animation
+            sphere.rotation.y += 0.01;
+            sphere.rotation.x += 0.01;
+
+
+            // Sphere Children LookAt Camera position
+            if (sphere) {
+
+                for (let index = 0; index < sphere.children.length; index++) {
+                    sphere.children[index].lookAt(camera.position)
+                }
+            }
+
+            renderer.render(scene, camera);
+        }
+
+        //----------------------------------------------------------------- 
+        // START FUNCTIONS
+
+        init();
+        animate();
     }
 
     render() {
         if (this.state.showSkillsBack) {
-            return <Redirect to='/skills-other' />;
+            return <Redirect to='/portfolio' />;
         }
         return (
-            <div id="container">
-                <div id="box">
-                    <div className="shadow__wall">
-
-                        <div id="shadow__text">
-                            <div className="skills__front">
-                                <div className="skills__front__title">
-                                    <h3>Compétences: Front-end</h3>
-                                </div>
-                                <div className="skills__front__content">
-                                    <div>
-                                        <img src={html} alt="Html5" />
-                                        <h4>Html5</h4>
-                                    </div>
-                                    <div>
-                                        <img src={css} alt="Css3" />
-                                        <h4>Css3</h4>
-                                    </div>
-                                    <div>
-                                        <img src={sass} alt="Sass" />
-                                        <h4>Sass</h4>
-                                    </div>
-                                    <div>
-                                        <img src={js} alt="Javascript" />
-                                        <h4>Javascript</h4>
-                                    </div>
-                                    <div>
-                                        <img src={react} alt="React-Jsx" />
-                                        <h4>React</h4>
-                                    </div>
-                                    <div>
-                                        <img src={redux} alt="Redux" />
-                                        <h4>Redux</h4>
-                                    </div>
-                                    <div>
-                                        <img src={angularjs} alt="AngularJs" />
-                                        <h4>AngualrJs</h4>
-                                    </div>
-                                    <div>
-                                        <img src={bootstrap} alt="Bootstrap" />
-                                        <h4>Bootstrap</h4>
-                                    </div>
-                                    <div>
-                                        <img src={mediaQueries} alt="Responsive-Design" />
-                                        <h4>Responsive Design</h4>
-                                    </div>
-                                </div>
-                            </div>
-                            <div className="contact__separator"></div>
-                            <div className="skills__back">
-                                <div className="skills__back__title">
-                                    <h3>Compétences: Back-end</h3>
-                                </div>
-                                <div className="skills__back__content">
-                                    <div>
-                                        <img src={cake} alt="Cakephp" />
-                                        <h4>Cakephp</h4>
-                                    </div>
-                                    <div>
-                                        <img src={codeigniter} alt="Codeigniter" />
-                                        <h4>Codeigniter</h4>
-                                    </div>
-                                    <div>
-                                        <img src={node} alt="NodeJs" />
-                                        <h4>NodeJs</h4>
-                                    </div>
-                                    <div>
-                                        <img src={mysql} alt="mysql" />
-                                        <h4>mysql</h4>
-                                    </div>
-                                    <div>
-                                        <img src={php} alt="php" />
-                                        <h4>php</h4>
-                                    </div>
-                                    <div>
-                                        <img src={symfony} alt="Symfony" />
-                                        <h4>Symfony</h4>
-                                    </div>
-                                    <div>
-                                        <img src={wordpress} alt="Wordpress" />
-                                        <h4>Wordpress</h4>
-                                    </div>
-                                </div>
-                            </div>
-                        </div>
-                    </div>
-                    <div id="shadow__spot"></div>
-                </div>
+            <div className="skills" ref={ref => (this.mount = ref)} >
+                <canvas id="c" style={{ height: '100vh', width: '100vw' }} ></canvas>
                 <div className="skills-other__title">
                     <h3>Compétences: Front-end / Back-end</h3>
                 </div>
