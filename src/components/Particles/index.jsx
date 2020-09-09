@@ -67,7 +67,7 @@ class Particles extends Component {
                 return Particle;
             })();
             mouseVX = mouseVY = mouseX = mouseY = 0;
-            canvas = document.getElementById("bg");
+            canvas = document.getElementById("particles");
             context = canvas.getContext("2d");
             canvas.width = window.innerWidth;
             canvas.height = window.innerHeight;
@@ -122,7 +122,7 @@ class Particles extends Component {
 
     render() {
         return (
-            <canvas id="bg" ></canvas>
+            <canvas id="particles" ></canvas>
         );
     }
 }

@@ -7,7 +7,6 @@ import {
 } from "react-router-dom";
 
 import SkillsFront from "../SkillsFront";
-import SkillsBack from "../SkillsBack";
 import Header from '../Header';
 import Particles from '../Particles';
 import Banner from '../Banner';
@@ -45,9 +44,6 @@ class Navigation extends Component {
             <div className="home" style={{ backgroundColor: this.props.bgColor }}>
                 <Router>
                     <Switch>
-                        <Route path="/skills-other">
-                            <SkillsBack />
-                        </Route>
                         <Route path="/portfolio">
                             <Portfolio />
                         </Route>

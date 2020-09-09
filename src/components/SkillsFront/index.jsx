@@ -187,8 +187,8 @@ class SkillsFront extends Component {
             requestAnimationFrame(animate);
 
             // Sphere Animation
-            sphere.rotation.y += 0.01;
-            sphere.rotation.x += 0.01;
+            sphere.rotation.y += 0.009;
+            sphere.rotation.x += 0.009;
 
 
             // Sphere Children LookAt Camera position
@@ -216,8 +216,8 @@ class SkillsFront extends Component {
         return (
             <div className="skills" ref={ref => (this.mount = ref)} >
                 <canvas id="c" style={{ height: '100vh', width: '100vw' }} ></canvas>
-                <div className="skills-other__title">
-                    <h3>Compétences: Front-end / Back-end</h3>
+                <div className="skills__title">
+                    <h3>Compétences</h3>
                 </div>
                 <Zoom unmountOnExit duration={1000} delay={500}>
                     <div className="skills__next ">
