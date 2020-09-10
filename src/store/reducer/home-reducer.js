@@ -41,7 +41,6 @@ function homeReducer(state = initialState, action) {
             }
             return nextState || state
         case 'TOGGLE_DEVICE_SIZE_VALUE':
-            console.log(action.value)
             nextState = {
                 ...state,
                 isSmallScreen: action.value
