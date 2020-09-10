@@ -9,7 +9,7 @@ class Bio extends Component {
         this.state = {
             showFirstStep: false,
             showButtonFirstStep: false,
-            durationStepOne: 6000,
+            durationStepOne: 8000,
             showSkills: false,
             delay: false
         };
@@ -62,7 +62,7 @@ class Bio extends Component {
                 <div className="bio__box">
                     <div className="bio__box__content">
                         {this.props.isSmallScreen
-                            ? <Zoom className="bio__box__content__text" left cascade collapse when={this.state.showFirstStep} unmountOnExit duration={this.state.durationStepOne} delay={this.state.delay ? 1000 : 200}>
+                            ? <Zoom className="bio__box__content__text" top cascade when={this.state.showFirstStep} unmountOnExit duration={this.state.durationStepOne} delay={this.state.delay ? 1000 : 200}>
                                 {/* Step One */}
                                 <div className="bio__text">
                                     <p>Hello, moi c'est Julien.</p>
@@ -71,7 +71,7 @@ class Bio extends Component {
                                     <p>J'ai obtenu le diplôme de Concepteur Développeur d'applications d'un niveau II en mars 2020 que j'ai préparé avec l'école O'Clock</p>
 
                                     <p>et en alternance avec l'entreprise E-wi Télécom .</p>
-                                    <p>Je m'applique à créer des applications Web immersives et centrées sur l'expérience utilisateur . . .</p>
+                                    <p>Je m'applique à créer des applications Web immersives et centrées sur l'expérience utilisateur.</p>
                                 </div>
                             </Zoom>
                             : <div className="bio__box__content__text">
