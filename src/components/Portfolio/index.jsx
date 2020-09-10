@@ -33,6 +33,27 @@ class Portfolio extends Component {
         this.props.dispatch(action3)
     }
 
+    showCard = (cardName) => {
+        this.setState({ [cardName]: false })
+
+        let stateArray = [
+            "showSith",
+            "showArena",
+            "showLogeMe",
+            "showMej",
+            "showReact"
+        ]
+
+        // Remove cardName of Array
+        var index = stateArray.indexOf(cardName);
+        stateArray.splice(index, 1);
+
+        // Hide other cards
+        for (let index = 0; index < stateArray.length; index++) {
+            this.setState({ [stateArray[index]]: true })
+        }
+    }
+
     render() {
         if (this.state.showContact) {
             return <Redirect to='/contact' />;
@@ -44,7 +65,7 @@ class Portfolio extends Component {
                 </div>
                 <div className="portfolio__container">
 
-                    <div className="portfolio__container__item" onClick={() => this.setState({ showSith: !this.state.showSith })}>
+                    <div className="portfolio__container__item" onClick={() => this.showCard('showSith')}>
                         <Fade when={this.state.showSith} left >
                             <div className="portfolio__container__item__content" style={{ backgroundImage: "url(" + sith + ")" }}></div>
                         </Fade>
@@ -64,7 +85,7 @@ class Portfolio extends Component {
                         </Fade>
                     </div>
 
-                    <div className="portfolio__container__item" onClick={() => this.setState({ showArena: !this.state.showArena })}>
+                    <div className="portfolio__container__item" onClick={() => this.showCard('showArena')}>
                         <Fade when={this.state.showArena} left >
                             <div className="portfolio__container__item__content" style={{ backgroundImage: "url(" + arena + ")" }}></div>
                         </Fade>
@@ -84,7 +105,7 @@ class Portfolio extends Component {
                         </Fade>
                     </div>
 
-                    <div className="portfolio__container__item" onClick={() => this.setState({ showLogeMe: !this.state.showLogeMe })}>
+                    <div className="portfolio__container__item" onClick={() => this.showCard('showLogeMe')}>
                         <Fade when={this.state.showLogeMe} left >
                             <div className="portfolio__container__item__content" style={{ backgroundImage: "url(" + logeMe + ")" }}></div>
                         </Fade>
@@ -103,7 +124,7 @@ class Portfolio extends Component {
                             </div>
                         </Fade>
                     </div>
-                    <div className="portfolio__container__item" onClick={() => this.setState({ showMej: !this.state.showMej })}>
+                    <div className="portfolio__container__item" onClick={() => this.showCard('showMej')}>
                         <Fade when={this.state.showMej} left >
                             <div className="portfolio__container__item__content" style={{ backgroundImage: "url(" + mej + ")" }}></div>
                         </Fade>
@@ -122,7 +143,7 @@ class Portfolio extends Component {
                             </div>
                         </Fade>
                     </div>
-                    <div className="portfolio__container__item" onClick={() => this.setState({ showReact: !this.state.showReact })}>
+                    <div className="portfolio__container__item" onClick={() => this.showCard('showReact')}>
                         <Fade when={this.state.showReact} left >
                             <div className="portfolio__container__item__content" style={{ backgroundImage: "url(" + react + ")" }}></div>
                         </Fade>
