@@ -1,7 +1,7 @@
 import React, { Component } from 'react';
 import { connect } from 'react-redux';
 import { FontAwesomeIcon } from '@fortawesome/react-fontawesome';
-import AllTheRegrets from '../../ressources/sounds/Loik_Bredolese-All_the_regrets.mp3';
+import BellNextRoute from '../../ressources/sounds/Bell-Next_Route.mp3';
 import { Redirect } from "react-router-dom";
 
 class Banner extends Component {
@@ -20,12 +20,12 @@ class Banner extends Component {
         const action3 = { type: "CHANGE_HEADER_COLOR", value: 'transparent' }
         this.props.dispatch(action3)
         // Title
-        document.title = 'DevOdyssey - Accueil';
+        document.title = 'DevOdyssey - Développeur Web Front-end - Accueil';
     }
 
     choiceSound = (soundChoice) => {
         if (soundChoice === true) {
-            let audio = new Audio(AllTheRegrets)
+            let audio = new Audio(BellNextRoute)
             audio.play()
         }
         const action = { type: "SHOW_SELECT_SOUND", value: false }
@@ -45,9 +45,9 @@ class Banner extends Component {
             <div className={"banner " + (this.props.menuIsShow ? 'addMarginTop' : '')}>
                 <div className="banner__content">
                     <div className="banner__content__title">
-                        <h2>
+                        <h1>
                             DevOdyssey
-                            </h2>
+                        </h1>
                     </div>
                     {this.props.showSelectSound &&
                         <div className="banner__content__audio-choice slowBlinkDark">
