@@ -50,7 +50,7 @@ class Header extends Component {
     render() {
         return (
             <div className="header" style={{ backgroundColor: this.props.headerColor }}>
-                <div className="header__title"><Link to="/"><h1 style={{ color: this.props.textColor }} >J L</h1></Link></div>
+                <div className="header__title"><Link to="/"><span style={{ color: this.props.textColor }} >J L</span></Link></div>
 
                 {this.props.truc
 

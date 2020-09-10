@@ -11,16 +11,18 @@ class Contact extends Component {
 
     componentDidMount() {
         // Title
-        document.title = 'DevOdyssey - Contact';
+        document.title = 'DevOdyssey - Développeur Web Front-end - Contact';
         const action = { type: "CHANGE_BACKGROUND", value: 'white' }
         this.props.dispatch(action)
         const action2 = { type: "CHANGE_TEXT_COLOR", value: 'black' }
         this.props.dispatch(action2)
+        const action3 = { type: "CHANGE_HEADER_COLOR", value: 'white' }
+        this.props.dispatch(action3)
     }
 
     render() {
         return (
-            <div className={"contact " + (this.props.menuIsShow ? 'addMarginTop' : '')}>
+            <div className="contact">
                 <Slide left className="contact__text">
                     <p>
                         Envie de m'adopter dans votre entreprise ? <br /> Intéréssé par mon travail ? <br /> Une remarque ou une question sur ce site ou mon parcours ? <br /> Vous pouvez me contacter par téléphone, e-mail ou encore discord !

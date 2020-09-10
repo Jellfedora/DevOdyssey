@@ -5,39 +5,7 @@ import { Redirect } from "react-router-dom";
 // Three js ressources
 import * as THREE from "three";
 import { OrbitControls } from "three/examples/jsm/controls/OrbitControls";
-import fontCavea from '../../ressources/threejs/fonts/Caveat_Regular.json';
-// Img front
-import angularjs from '../../ressources/images/icons/angularjs.png';
-import bootstrap from '../../ressources/images/icons/bootstrap.png';
-import css from '../../ressources/images/icons/css3.png';
-import html from '../../ressources/images/icons/html-5.png';
-import js from '../../ressources/images/icons/javascript.png';
-import mediaQueries from '../../ressources/images/icons/media-queries.png';
-import react from '../../ressources/images/icons/react.png';
-import redux from '../../ressources/images/icons/redux.png';
-import sass from '../../ressources/images/icons/sass.png';
-
-// Img back
-import cake from '../../ressources/images/icons/cake.png';
-import codeigniter from '../../ressources/images/icons/codeigniter.png';
-import node from '../../ressources/images/icons/nodejs.png';
-import mysql from '../../ressources/images/icons/mysql.png';
-import php from '../../ressources/images/icons/php.png';
-import symfony from '../../ressources/images/icons/symfony.png';
-import wordpress from '../../ressources/images/icons/wordpress.png';
-
-// const relMousePos = {
-//     _x: 0, _y: 0, x: 0, y: 0,
-//     updatePos: function (e) {
-//         const event = (e || window.event) && (e.touches && e.touches[0]) || e;
-//         this.x = event.clientX - this._x;
-//         this.y = event.clientY - this._y;
-//     },
-//     setOrigin: function (e) {
-//         this._x = e.offsetLeft + Math.floor(e.offsetWidth / 2);
-//         this._y = e.offsetTop + Math.floor(e.offsetHeight / 2);
-//     }
-// }
+import fontOrkney from '../../ressources/threejs/fonts/Orkney_Regular.json';
 
 class SkillsFront extends Component {
     constructor(props) {
@@ -48,7 +16,7 @@ class SkillsFront extends Component {
     }
     componentDidMount() {
         // Title
-        document.title = 'DevOdyssey - Compétences';
+        document.title = 'DevOdyssey - Développeur Web Front-end - Compétences';
         const action1 = { type: "CHANGE_TEXT_COLOR", value: 'white' }
         this.props.dispatch(action1)
         const action2 = { type: "CHANGE_MENU_COLOR", value: 'transparent' }
@@ -164,7 +132,7 @@ class SkillsFront extends Component {
 
                 let skillName = skillsNameArray[index];
                 var skill = new THREE.FontLoader();
-                var font = skill.parse(fontCavea);
+                var font = skill.parse(fontOrkney);
                 var geometry = new THREE.TextGeometry(skillName, {
                     font: font,
                     size: 0.2,
@@ -176,6 +144,7 @@ class SkillsFront extends Component {
                 skillMesh.position.set(sphereVerticesArray[index].x, sphereVerticesArray[index].y, sphereVerticesArray[index].z);
                 sphere.add(skillMesh)
             }
+
         };
 
         scene.add(sphere);
@@ -187,8 +156,8 @@ class SkillsFront extends Component {
             requestAnimationFrame(animate);
 
             // Sphere Animation
-            sphere.rotation.y += 0.009;
-            sphere.rotation.x += 0.009;
+            sphere.rotation.y += 0.003;
+            sphere.rotation.x += 0.003;
 
 
             // Sphere Children LookAt Camera position
@@ -217,7 +186,7 @@ class SkillsFront extends Component {
             <div className="skills" ref={ref => (this.mount = ref)} >
                 <canvas id="c" style={{ height: '100vh', width: '100vw' }} ></canvas>
                 <div className="skills__title">
-                    <h3>Compétences</h3>
+                    <h2>Compétences</h2>
                 </div>
                 <Zoom unmountOnExit duration={1000} delay={500}>
                     <div className="skills__next ">

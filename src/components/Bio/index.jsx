@@ -17,7 +17,7 @@ class Bio extends Component {
 
     componentDidMount() {
         // Title
-        document.title = 'DevOdyssey - Présentation';
+        document.title = 'DevOdyssey - Développeur Web Front-end - Présentation';
         const action = { type: "CHANGE_BACKGROUND", value: '#020202' }
         this.props.dispatch(action)
         const action2 = { type: "CHANGE_TEXT_COLOR", value: '#F8F8F8' }
@@ -58,7 +58,7 @@ class Bio extends Component {
         }
         return (
             <div className="bio">
-                <div className="bio__title">Présentation</div>
+                <div className="bio__title"><h2>Présentation</h2></div>
                 <div className="bio__box">
                     <div className="bio__box__content">
                         {this.props.isSmallScreen

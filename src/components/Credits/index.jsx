@@ -17,11 +17,10 @@ class Credits extends Component {
             <div className="credits">
                 Musique
 
-                Titre:  All The Regrets
-                Auteur: Loik Brédolèse
-                Source: https://soundcloud.com/blurturtle
-                Licence: https://creativecommons.org/licenses/by/4.0/deed.fr
-                Téléchargement (5MB): https://auboutdufil.com/?id=532
+                Track: Bells — Next Route [Audio Library Release]
+                Music provided by Audio Library Plus
+                Watch: https://youtu.be/ySHvCIfonKs
+                Free Download / Stream: https://alplus.io/bells
             </div >
         );
     }
