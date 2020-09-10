@@ -50,7 +50,7 @@ class Banner extends Component {
                         </h1>
                     </div>
                     {this.props.showSelectSound &&
-                        <div className="banner__content__audio-choice slowBlinkDark">
+                        <div className="banner__content__audio-choice">
                             <div className="banner__content__audio-choice__text">
                                 <p>Etes vous d'accord pour activer le son ?</p>
                             </div>
