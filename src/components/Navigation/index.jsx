@@ -8,7 +8,6 @@ import {
 
 import SkillsFront from "../SkillsFront";
 import Header from '../Header';
-import Particles from '../Particles';
 import Banner from '../Banner';
 import Contact from '../Contact';
 import Bio from '../Bio';
@@ -64,7 +63,6 @@ class Navigation extends Component {
                         </Route>
                     </Switch>
                     <Header />
-                    <Particles />
                 </Router>
             </div>
         );
