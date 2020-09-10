@@ -1,16 +1,22 @@
-@import url('https://fonts.googleapis.com/css2?family=Caveat:wght@400;700&display=swap');
+@font-face {
+    font-family: "Orkney";
+    src: url('../../ressources/fonts/Orkney-Regular.ttf')format("ttf");
+}
+
+@font-face {
+    font-family: "Orkney";
+    font-weight: bold;
+    src: url('../../ressources/fonts/Orkney-Bold.ttf')format("ttf");
+}
 
 body {
-    font-family: 'Caveat', sans-serif;
+    font-family: 'Orkney', sans-serif;
 }
 
-h1 {
-    font-weight: bold;
-    text-transform: uppercase;
-}
+
 
 button {
-    font-family: 'Caveat', sans-serif;
+    font-family: 'Orkney', sans-serif;
 }
 
 a {
