@@ -10,8 +10,8 @@ import Navigation from "../Navigation";
 // Fontawesome 5
 import { library } from '@fortawesome/fontawesome-svg-core';
 import { faThumbsUp, faThumbsDown, faHome, faUser, faCog, faEye, faEnvelope, faChevronLeft, faChevronRight } from '@fortawesome/free-solid-svg-icons';
-import { faGithub } from '@fortawesome/free-brands-svg-icons'; //For brand icons
-library.add(faThumbsUp, faThumbsDown, faGithub, faHome, faUser, faCog, faEye, faEnvelope, faChevronLeft, faChevronRight);
+import { faGithub, faFacebook } from '@fortawesome/free-brands-svg-icons'; //For brand icons
+library.add(faThumbsUp, faThumbsDown, faGithub, faHome, faUser, faCog, faEye, faEnvelope, faChevronLeft, faChevronRight, faFacebook);
 
 const App = () => {
     return (

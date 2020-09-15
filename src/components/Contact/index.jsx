@@ -1,6 +1,7 @@
 import React, { Component } from 'react';
 import { connect } from 'react-redux';
 import Slide from 'react-reveal/Slide';
+import { FontAwesomeIcon } from '@fortawesome/react-fontawesome';
 
 class Contact extends Component {
     constructor(props) {
@@ -33,7 +34,7 @@ class Contact extends Component {
             <div className="contact">
                 <Slide left className="contact__text">
                     <p>
-                        Envie de m'adopter dans votre entreprise ? <br /> Intéréssé par mon travail ? <br /> Une remarque ou une question sur ce site ou mon parcours ? <br /> Vous pouvez me contacter par téléphone, e-mail ou encore discord !
+                        Envie de m'adopter dans votre entreprise ? <br /> Intéréssé par mon travail ? <br /> Une remarque ou une question sur ce site ou mon parcours ? <br /> Vous pouvez me contacter par téléphone, courriel ou encore discord !
                     </p>
                 </Slide>
                 <a className="contact__item" href="tel:0750475870" title="Mon numéro de téléphone">
@@ -61,7 +62,7 @@ class Contact extends Component {
                 <div className="contact__separator"></div>
                 <Slide right className="contact__text">
                     <p>
-                        Vous pouvez aussi me retrouver sur les réseaux.
+                        Ainsi que sur les réseaux.
                     </p>
                 </Slide>
                 <a className="contact__item" href="https://www.linkedin.com/in/julien-lecointe/" style={{ cursor: 'pointer' }} title="Mon profil LinkedIn">
@@ -79,9 +80,21 @@ class Contact extends Component {
                     <span>Twitter</span>
                 </a>
                 <div className="contact__separator"></div>
+                <Slide right className="contact__text">
+                    <p>
+                        Et pourquoi pas me rejoindre sur le groupe Three.js France, que j'ai créé et que j'administre sur Facebook.
+                    </p>
+                </Slide>
+                <a className="contact__item" href="https://www.facebook.com/groups/809464879808362/?ref=share" style={{ cursor: 'pointer' }} title="Mon profil LinkedIn">
+                    <span className="contact__item__facebook">
+                        <FontAwesomeIcon icon={['fab', 'facebook']} color="black" />
+                    </span>
+                    <span>Three.js France</span>
+                </a>
+                <div className="contact__separator"></div>
                 <Slide left className="contact__text">
                     <p>
-                        Et vous pouvez bien sûr aller voir mes travaux personnels.
+                        Pour finir, retrouvez mes travaux sur Github grâce au lien ci-dessous!
                     </p>
                 </Slide>
                 <a className="contact__item" style={{ color: '#dfbe8d', paddingBottom: '10em', cursor: 'pointer' }} href="https://github.com/Jellfedora" title="Ma page Github">
