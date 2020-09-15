@@ -34,7 +34,7 @@ class Portfolio extends Component {
     }
 
     showCard = (cardName) => {
-        this.setState({ [cardName]: false })
+        this.setState({ [cardName]: !this.state[cardName] });
 
         let stateArray = [
             "showSith",
@@ -42,7 +42,7 @@ class Portfolio extends Component {
             "showLogeMe",
             "showMej",
             "showReact"
-        ]
+        ];
 
         // Remove cardName of Array
         var index = stateArray.indexOf(cardName);
@@ -50,7 +50,7 @@ class Portfolio extends Component {
 
         // Hide other cards
         for (let index = 0; index < stateArray.length; index++) {
-            this.setState({ [stateArray[index]]: true })
+            this.setState({ [stateArray[index]]: true });
         }
     }
 
