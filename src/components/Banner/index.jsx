@@ -42,7 +42,7 @@ class Banner extends Component {
             return <Redirect to='/bio' />;
         }
         return (
-            <div className={"banner " + ((this.props.menuIsShow && !this.props.isSmallScreen) ? 'addMarginTop' : '')}>
+            <div className="banner">
                 <div className="banner__content">
                     <div className="banner__content__title">
                         <h1>

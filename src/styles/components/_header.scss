@@ -14,6 +14,7 @@
         flex: 2;
         display: flex;
         justify-content: center;
+        z-index: 2;
 
         & a,
         &__icon {
@@ -54,9 +55,9 @@
 
     &__menu-mobile {
         position: absolute;
-        top: 3em;
+        // top: 3em;
         left: 0;
-        width: 10em !important;
+        width: 15em !important;
         height: 100%;
         z-index: 2;
 
@@ -65,26 +66,30 @@
             flex-wrap: wrap;
             justify-content: center;
             align-content: space-around;
-            height: 100%;
-            height: calc(100vh - 3em);
+            height: 100vh;
+            // height: calc(100vh - 3em);
             padding-left: 1em;
+            font-weight: bold;
 
             & li {
                 color: white;
                 text-align: left;
                 width: 100%;
-                pointer-events: initial;
+                font-size: 1.1em;
+
+                & svg {
+                    margin-right: 1em;
+                }
             }
         }
     }
 
     &__background-mobile {
-        height: calc(100vh - 3em);
+        position: fixed;
+        height: 100vh;
         background-color: black;
-        position: absolute;
-        top: 3em;
         left: 0;
-        opacity: 0.8;
+        opacity: 0.85;
         z-index: 1;
         transition: 1s;
     }

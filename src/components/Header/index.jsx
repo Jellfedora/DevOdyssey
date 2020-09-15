@@ -58,6 +58,7 @@ class Header extends Component {
                         className="header__menu-icon__icon"
                         active={this.props.menuIsShow}
                         color={this.props.textColor}
+                        color={this.props.isSmallScreen && this.props.menuIsShow ? 'white' : this.props.textColor}
                         width={25}
                         lineSpacing={7}
                         lineHeight={2}
@@ -66,7 +67,7 @@ class Header extends Component {
 
                 </div>
                 { this.props.isSmallScreen
-                    ? <div>
+                    ? <div style={{ pointerEvents: this.props.menuIsShow ? 'initial' : 'none' }}>
                         <div className="header__background-mobile" style={{ visibility: this.props.menuIsShow ? 'visible' : 'hidden', width: this.props.menuIsShow ? '100%' : '0' }}>
                         </div>
                         <Fade left when={this.props.menuIsShow} delay={200} >
@@ -81,8 +82,6 @@ class Header extends Component {
                             </div>
                         </Fade>
                     </div>
-
-
 
                     : <Zoom right when={this.props.menuIsShow} >
                         <div className="header__menu" style={{ backgroundColor: this.props.headerColor }}>
