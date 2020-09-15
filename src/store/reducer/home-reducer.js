@@ -4,7 +4,8 @@ const initialState = {
     headerColor: 'white',
     showSelectSound: true,
     showMenu: false,
-    isSmallScreen: false
+    isSmallScreen: false,
+    headerPosition: "absolute"
 }
 
 function homeReducer(state = initialState, action) {
@@ -26,6 +27,12 @@ function homeReducer(state = initialState, action) {
             nextState = {
                 ...state,
                 headerColor: action.value
+            }
+            return nextState || state
+        case 'CHANGE_HEADER_POSITION':
+            nextState = {
+                ...state,
+                headerPosition: action.value
             }
             return nextState || state
         case 'SHOW_SELECT_SOUND':

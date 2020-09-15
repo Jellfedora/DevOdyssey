@@ -5,15 +5,15 @@
     align-content: center;
     align-items: flex-end;
     height: 100%;
+    position: relative;
 
     &__title {
         color: $color-dark;
-        font-size: 1.2em;
+        font-size: 1.5em;
         left: 1em;
         width: 100%;
-        padding-top: 5em;
+        padding-top: 3em;
         text-align: center;
-        margin-bottom: 1em;
         font-weight: bold;
     }
 
@@ -57,13 +57,17 @@
                 display: flex;
                 flex-wrap: wrap;
                 align-content: space-between;
-                font-size: 1.5em;
+                font-size: 1em;
 
                 &__header {
                     width: 100%;
                     justify-content: space-between;
                     padding: 0.5em 0.5em 0 0.5em;
                     display: flex;
+
+                    & h3 {
+                        font-weight: bold;
+                    }
                 }
 
                 &__description {
@@ -81,7 +85,7 @@
 
 }
 
-@media (min-width: 576px) {
+@media (min-width: 600px) {
     .portfolio {
         min-height: 100vh;
 
@@ -89,7 +93,7 @@
             font-size: 2em;
             width: 2em;
             text-align: left;
-            position: fixed;
+            position: absolute;
             left: 0;
             bottom: 0.5em;
             margin: 0;

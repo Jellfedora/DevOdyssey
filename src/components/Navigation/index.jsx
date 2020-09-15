@@ -20,15 +20,14 @@ class Navigation extends Component {
         window.addEventListener('resize', this.resize)
 
         // Detect screen size
-        if (window.innerWidth < 768) {
-            console.log('ici')
+        if (window.innerWidth < 1024) {
             const action = { type: "TOGGLE_DEVICE_SIZE_VALUE", value: true }
             this.props.dispatch(action)
         }
     }
 
     resize = () => {
-        if (window.innerWidth > 768) {
+        if (window.innerWidth < 1024) {
             const action = { type: "TOGGLE_DEVICE_SIZE_VALUE", value: true }
             this.props.dispatch(action)
         } else {
@@ -36,7 +35,6 @@ class Navigation extends Component {
             this.props.dispatch(action)
         }
     }
-
 
     render() {
         return (

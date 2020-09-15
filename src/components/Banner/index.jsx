@@ -42,7 +42,7 @@ class Banner extends Component {
             return <Redirect to='/bio' />;
         }
         return (
-            <div className={"banner " + (this.props.menuIsShow ? 'addMarginTop' : '')}>
+            <div className={"banner " + ((this.props.menuIsShow && !this.props.isSmallScreen) ? 'addMarginTop' : '')}>
                 <div className="banner__content">
                     <div className="banner__content__title">
                         <h1>
@@ -83,7 +83,8 @@ const mapDispatchToProps = (dispatch) => {
 const mapStateToProps = (state) => {
     return {
         showSelectSound: state.home.showSelectSound,
-        menuIsShow: state.home.showMenu
+        menuIsShow: state.home.showMenu,
+        isSmallScreen: state.home.isSmallScreen
     }
 }
 export default connect(mapStateToProps, mapDispatchToProps)(Banner);

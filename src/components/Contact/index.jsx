@@ -18,6 +18,14 @@ class Contact extends Component {
         this.props.dispatch(action2)
         const action3 = { type: "CHANGE_HEADER_COLOR", value: 'white' }
         this.props.dispatch(action3)
+        const action4 = { type: "CHANGE_HEADER_POSITION", value: 'absolute' }
+        this.props.dispatch(action4)
+
+    }
+
+    componentWillUnmount() {
+        const action = { type: "CHANGE_HEADER_POSITION", value: 'fixed' }
+        this.props.dispatch(action)
     }
 
     render() {
@@ -73,7 +81,7 @@ class Contact extends Component {
                 <div className="contact__separator"></div>
                 <Slide left className="contact__text">
                     <p>
-                        Et vous pouvez bien sûr allez voir mes travaux personnels.
+                        Et vous pouvez bien sûr aller voir mes travaux personnels.
                     </p>
                 </Slide>
                 <a className="contact__item" style={{ color: '#dfbe8d', paddingBottom: '10em', cursor: 'pointer' }} href="https://github.com/Jellfedora" title="Ma page Github">

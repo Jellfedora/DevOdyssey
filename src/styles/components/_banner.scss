@@ -23,12 +23,13 @@
         &__title {
             font-weight: bold;
             font-size: 2em;
+            padding-top: 1em;
         }
 
         &__baseline {
             font-style: italic;
             line-height: 1.5em;
-            font-size: 1.5em;
+            font-size: 1.2em;
         }
 
         &__audio-choice {
@@ -40,6 +41,7 @@
             display: flex;
             flex-wrap: wrap;
             border: 3px solid black;
+            font-weight: bold;
 
             &__text {
                 width: 100%;
