@@ -66,7 +66,7 @@ class Bio extends Component {
                                 {/* Step One */}
                                 <div className="bio__text">
                                     <p>Hello, moi c'est Julien.</p>
-                                    <p>Je suis un concepteur / développeur web français spécialisé sur la librairie React Js et vivant à la Rochelle .</p>
+                                    <p>Je suis un concepteur / développeur web français spécialisé sur la librairie React Js et résidant à Toulouse .</p>
 
                                     <p>J'ai obtenu le diplôme de Concepteur Développeur d'applications d'un niveau II en mars 2020 que j'ai préparé avec l'école O'Clock</p>
 
@@ -80,7 +80,7 @@ class Bio extends Component {
                                     <p>Hello, moi c'est Julien.</p>
                                 </Flip>
                                 <Flip left opposite cascade collapse when={this.state.showFirstStep} unmountOnExit duration={this.state.durationStepOne} delay={this.state.delay ? 900 : 500} className="bio__text">
-                                    <p>Je suis un concepteur / développeur web français spécialisé sur la librairie React Js et vivant à la Rochelle .</p>
+                                    <p>Je suis un concepteur / développeur web français spécialisé sur la librairie React Js et résidant à Toulouse .</p>
                                 </Flip>
                                 <Flip left opposite cascade collapse when={this.state.showFirstStep} unmountOnExit duration={this.state.durationStepOne} delay={this.state.delay ? 800 : 1000} className="bio__text">
                                     <p>J'ai obtenu le diplôme de Concepteur Développeur d'applications d'un niveau II en mars 2020 que j'ai préparé avec l'école O'Clock</p>
