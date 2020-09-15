@@ -23,6 +23,7 @@
 
     &__title {
         font-weight: bold;
+        font-family: 'Caveat', sans-serif;
     }
 
     &__separator {
@@ -49,6 +50,43 @@
                 pointer-events: initial;
             }
         }
+    }
+
+    &__menu-mobile {
+        position: absolute;
+        top: 3em;
+        left: 0;
+        width: 10em !important;
+        height: 100%;
+        z-index: 2;
+
+        &__list {
+            display: flex;
+            flex-wrap: wrap;
+            justify-content: center;
+            align-content: space-around;
+            height: 100%;
+            height: calc(100vh - 3em);
+            padding-left: 1em;
+
+            & li {
+                color: white;
+                text-align: left;
+                width: 100%;
+                pointer-events: initial;
+            }
+        }
+    }
+
+    &__background-mobile {
+        height: calc(100vh - 3em);
+        background-color: black;
+        position: absolute;
+        top: 3em;
+        left: 0;
+        opacity: 0.8;
+        z-index: 1;
+        transition: 1s;
     }
 }
 
