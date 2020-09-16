@@ -4,6 +4,7 @@ import Zoom from 'react-reveal/Zoom';
 import { Redirect } from "react-router-dom";
 // Three js ressources
 import * as THREE from "three";
+import TWEEN from '@tweenjs/tween.js';
 import { OrbitControls } from "three/examples/jsm/controls/OrbitControls";
 import fontOrkney from '../../ressources/threejs/fonts/Orkney_Regular.json';
 
@@ -42,23 +43,19 @@ class SkillsFront extends Component {
 
         this.mount.appendChild(renderer.domElement);
 
-        window.addEventListener('resize', onWindowResize, false);
-        function onWindowResize() {
-            camera.aspect = window.innerWidth / window.innerHeight;
-            camera.updateProjectionMatrix();
-            renderer.setSize(window.innerWidth, window.innerHeight);
-        };
 
         // -----------------------------------------------------------------
         // CAMERA
-
         var camera = new THREE.PerspectiveCamera(20, window.innerWidth / window.innerHeight, 1, 500);
-        camera.position.set(0, 20, 30);
+        if (window.innerWidth < 1024) {
+            camera.position.set(0, 0, 50);
+        } else {
+            camera.position.set(0, 0, 35);
+        }
 
 
         // -----------------------------------------------------------------
         // SCENE
-
         var scene = new THREE.Scene();
         scene.background = new THREE.Color("black");
 
@@ -68,47 +65,97 @@ class SkillsFront extends Component {
         // OrbitControls
         const controls = new OrbitControls(camera, canvas);
         controls.update();
+        controls.enableDamping = true;
+        controls.dampingFactor = 0.08;
 
         // -----------------------------------------------------------------
         // LIGHT
-
         var light = new THREE.AmbientLight('white'); // soft white light
         scene.add(light);
 
         //----------------------------------------------------------------- 
-        // FUNCTION
-
-        var skillsNameArray = [
-            "Html5",
-            "Css3",
-            "Sass",
-            "Bootstrap",
-            "Javascript",
-            "ReactJs",
-            "Redux",
-            "NodeJs",
-            "Symfony",
-            "AngularJs",
-            "Cakephp",
-            "Codeigniter",
-            "Three.js",
-            "mysql",
-            "php",
-            "Wordpress",
-            "Git",
-            "Gitlab",
-            "Github",
-            "Linux",
-            "Windows",
-            "React Native"
+        // FUNCTIONS
+        var skillsArray = [
+            {
+                name: 'Html5'
+            },
+            {
+                name: 'Css3'
+            },
+            {
+                name: 'Sass'
+            },
+            {
+                name: 'Bootstrap'
+            },
+            {
+                name: 'Javascript'
+            },
+            {
+                name: 'ReactJs'
+            },
+            {
+                name: 'Redux'
+            },
+            {
+                name: 'NodeJs'
+            },
+            {
+                name: 'Symfony'
+            },
+            {
+                name: 'AngularJs'
+            },
+            {
+                name: 'Cakephp'
+            },
+            {
+                name: 'Codeigniter'
+            },
+            {
+                name: 'Three.js'
+            },
+            {
+                name: 'mysql'
+            },
+            {
+                name: 'php'
+            },
+            {
+                name: 'Wordpress'
+            },
+            {
+                name: 'Git'
+            },
+            {
+                name: 'Gitlab'
+            },
+            {
+                name: 'Github'
+            },
+            {
+                name: 'Linux'
+            },
+            {
+                name: 'Windows'
+            },
+            {
+                name: 'React Native'
+            },
+            {
+                name: 'Electron'
+            },
+            {
+                name: 'Agile'
+            },
+            {
+                name: 'Merise'
+            },
         ];
 
-
-        //----------------------------------------------------------------- 
         // Sphere
-
         var radius = 5;
-        var widthSegments = 5;
+        var widthSegments = 6;
         var heightSegments = 5;
         var geometry = new THREE.SphereGeometry(radius, widthSegments, heightSegments);
 
@@ -120,17 +167,22 @@ class SkillsFront extends Component {
         });
         var sphere = new THREE.Mesh(geometry, material);
         var sphereVerticesArray = geometry.vertices;
+        var sphereIsAnimate = true;
 
-        //----------------------------------------------------------------- 
-        // INIT
-        function init() {
+        // Plane
+        var planeGeometry = new THREE.PlaneGeometry(7, 4, 4, 4);
+        var plane = new THREE.Mesh(planeGeometry, material);
+        var planeVerticesArray = plane.geometry.vertices;
+        scene.add(plane);
 
+        // Create Text Elements
+        function createTextElements() {
             const colorSkill = new THREE.MeshPhongMaterial({ color: 'white' });
 
             // Pour chaque élément du tableau on crée un mesh
-            for (let index = 0; index < skillsNameArray.length; index++) {
+            for (let index = 0; index < skillsArray.length; index++) {
 
-                let skillName = skillsNameArray[index];
+                let skillName = skillsArray[index].name;
                 var skill = new THREE.FontLoader();
                 var font = skill.parse(fontOrkney);
                 var geometry = new THREE.TextGeometry(skillName, {
@@ -144,25 +196,81 @@ class SkillsFront extends Component {
                 skillMesh.position.set(sphereVerticesArray[index].x, sphereVerticesArray[index].y, sphereVerticesArray[index].z);
                 sphere.add(skillMesh)
             }
+        }
 
+        // Sphere vertices alignement
+        function alignTextOnSphereVertices() {
+
+            // SI position différente on rapproche lelement dans animate par tranche de 0.1
+            for (let index = 0; index < skillsArray.length; index++) {
+
+                var tween = new TWEEN.Tween(sphere.children[index].position)
+                    .to({ y: sphereVerticesArray[index].y, x: sphereVerticesArray[index].x, z: sphereVerticesArray[index].z }, 1000)
+                    // .delay(500)
+                    // .onComplete(function () {
+                    // sphere.children[index].position
+                    // })
+                    .start();
+            }
+
+        }
+
+        // // Sphere vertices alignement
+        function alignText() {
+            // On réinitialise la position de la caméra
+            controls.reset()
+            // On réinitialise la rotation de la sphere
+            sphere.rotation.y = 0;
+            sphere.rotation.x = 0;
+
+            // On aligne les elements l'un en dessous l'autre
+            for (let index = 0; index < skillsArray.length; index++) {
+                // Changer la position
+                var tween = new TWEEN.Tween(sphere.children[index].position)
+                    .to({ x: planeVerticesArray[index].x, y: planeVerticesArray[index].y, z: planeVerticesArray[index].z }, 1000)
+                    // .delay(500)
+                    .onComplete(function () {
+                        // sphere.children[index].position
+                    })
+                    .start();
+            }
+        }
+
+        // Change Text Position onclick
+        function changeGeometry() {
+            // On stop ou relance la rotation de la sphere
+            if (sphereIsAnimate) {
+                alignText();
+                sphereIsAnimate = false;
+            } else {
+                alignTextOnSphereVertices();
+                sphereIsAnimate = true;
+            }
+        }
+
+        //----------------------------------------------------------------- 
+        // INIT
+        function init() {
+            createTextElements();
         };
 
         scene.add(sphere);
 
         //----------------------------------------------------------------- 
         // ANIMATE
-
-        var animate = function () {
+        var animate = function (time) {
             requestAnimationFrame(animate);
+            TWEEN.update(time);
 
             // Sphere Animation
-            sphere.rotation.y += 0.003;
-            sphere.rotation.x += 0.003;
+            if (sphereIsAnimate) {
+                sphere.rotation.y += 0.01;
+                sphere.rotation.x += 0.01;
+            }
 
 
             // Sphere Children LookAt Camera position
             if (sphere) {
-
                 for (let index = 0; index < sphere.children.length; index++) {
                     sphere.children[index].lookAt(camera.position)
                 }
@@ -172,8 +280,24 @@ class SkillsFront extends Component {
         }
 
         //----------------------------------------------------------------- 
-        // START FUNCTIONS
+        // RESIZE
+        function onWindowResize() {
 
+            camera.aspect = window.innerWidth / window.innerHeight;
+            camera.updateProjectionMatrix();
+
+            renderer.setSize(window.innerWidth, window.innerHeight);
+
+        }
+
+        //----------------------------------------------------------------- 
+        // LISTENER
+        document.getElementById("c").addEventListener("click", changeGeometry);
+        document.getElementById("c").addEventListener("touchend", changeGeometry);
+        window.addEventListener('resize', onWindowResize, false);
+
+        //----------------------------------------------------------------- 
+        // START FUNCTIONS
         init();
         animate();
     }
